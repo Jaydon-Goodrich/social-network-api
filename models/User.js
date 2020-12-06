@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+//User Schema requires username and email
 const UserSchema = new Schema(
     {
         username: {
@@ -34,7 +35,7 @@ const UserSchema = new Schema(
         }
     }
 );
-
+//virtual function to keep track of amount of friends
 UserSchema.virtual('friendCount').get(function(){
     return this.friends.length;
 });

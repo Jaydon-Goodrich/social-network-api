@@ -15,6 +15,7 @@ const thoughtController = {
                 res.status(400).json(err);
             });
     },
+    //find thought by Id
     findThoughtById({ params }, res) {
         Thought.findOne({ _id: params.thoughtId })
             .populate({

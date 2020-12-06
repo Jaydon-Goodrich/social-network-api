@@ -1,6 +1,7 @@
 const moment = require('moment');
 const { Schema, model } = require('mongoose');
 
+//Reaction Schema used to create reactions
 const ReactionSchema = new Schema(
     {
         reactionId: {
@@ -18,6 +19,7 @@ const ReactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
+            //getter used to format the date using moment.js
             get: dateVal => moment(dateVal).format('MMM Do[,] YYYY [at] hh:mm a')
         }
     },
@@ -28,6 +30,7 @@ const ReactionSchema = new Schema(
     }
 )
 
+//The Schema for building thoughts
 const ThoughtSchema = new Schema(
     {
         thoughtText: {
@@ -39,6 +42,7 @@ const ThoughtSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
+            //getter used to format the date using moment.js
             get: dateVal => moment(dateVal).format('MMM Do[,] YYYY [at] hh:mm a')
         },
         username: {
@@ -55,7 +59,7 @@ const ThoughtSchema = new Schema(
         }
     }
 );
-
+//virtual used to track amount of reactions
 ThoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
 });
